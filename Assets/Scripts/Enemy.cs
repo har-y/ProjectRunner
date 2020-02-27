@@ -16,5 +16,10 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         transform.Translate(0f, 0f, Time.deltaTime * -_enemySpeed);
+
+        if (transform.position.z < -10f)
+        {
+            Destroy(gameObject);
+        }
     }
 }
