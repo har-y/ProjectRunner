@@ -23,4 +23,12 @@ public class Player : MonoBehaviour
         float _positionXRange = Mathf.Clamp(transform.position.x, -_xTilt, _xTilt);
         transform.position = new Vector3(_positionXRange, transform.position.y, transform.position.z);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Enemy")
+        {
+            GameManager.instance.Restart();
+        }
+    }
 }

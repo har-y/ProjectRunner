@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject _enemyObject;
+    [SerializeField] private GameObject _enemyContainer;
    
     private float _xTilt = 1.75f;
 
@@ -34,9 +36,10 @@ public class GameManager : MonoBehaviour
     {
         float _randomValueX = Random.Range(-_xTilt, _xTilt);
 
-        Vector3 _enemyPosition = new Vector3(_randomValueX, 0.5f, 80f);
+        Vector3 _enemyPosition = new Vector3(_randomValueX, 0.5f, 50f);
 
-        Instantiate(_enemyObject, _enemyPosition, Quaternion.identity);
+        GameObject _enemy = Instantiate(_enemyObject, _enemyPosition, Quaternion.identity);
+        _enemy.transform.parent = _enemyContainer.transform;
     }
 
     private IEnumerator SpawnEnemyRoutine()
@@ -46,5 +49,10 @@ public class GameManager : MonoBehaviour
             SpawnEnemy();
             yield return new WaitForSeconds(1f);
         }
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(0);
     }
 }
