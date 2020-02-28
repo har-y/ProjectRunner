@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _enemyContainer;
    
     private float _xTilt = 1.75f;
+    private int _score = 0;
 
     public static GameManager instance;
 
@@ -54,5 +55,10 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void ScoreUp()
+    {
+        _score++;
     }
 }
