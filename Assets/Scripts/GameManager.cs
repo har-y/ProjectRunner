@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
     {
         float _randomValueX = Random.Range(-_xTilt, _xTilt);
 
-        Vector3 _enemyPosition = new Vector3(_randomValueX, 0.5f, 50f);
+        Vector3 _enemyPosition = new Vector3(_randomValueX, 0.5f, 20f);
 
         GameObject _enemy = Instantiate(_enemyObject, _enemyPosition, Quaternion.identity);
         _enemy.transform.parent = _enemyContainer.transform;
