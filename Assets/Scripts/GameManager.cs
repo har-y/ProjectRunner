@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     private float _xTilt = 1.75f;
 
     private int _score = 0;
+    private int _highScore = 0;
 
     private bool _gameStarted = false;
 
@@ -31,7 +32,10 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (PlayerPrefs.HasKey("highScore"))
+        {
+            _highScore = PlayerPrefs.GetInt("highScore");
+        }
     }
 
     // Update is called once per frame
@@ -69,6 +73,12 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
+        if (_score > _highScore)
+        {
+            _highScore = _score;
+            PlayerPrefs.SetInt("highScore", _highScore);
+        }
+
         SceneManager.LoadScene(0);
     }
 
