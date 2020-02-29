@@ -8,10 +8,9 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject _enemyObject;
     [SerializeField] private GameObject _enemyContainer;
+    [SerializeField] private GameObject _menuPanel;
 
     [SerializeField] private Text _scoreText;
-
-    [SerializeField] private GameObject _menuPanel;
    
     private float _xTilt = 1.75f;
 
@@ -40,9 +39,11 @@ public class GameManager : MonoBehaviour
     {
         if (Input.anyKeyDown && !_gameStarted)
         {
-            _scoreText.gameObject.SetActive(true);
             _menuPanel.SetActive(false);
+            _scoreText.gameObject.SetActive(true);
+
             StartCoroutine("SpawnEnemyRoutine");
+
             _gameStarted = true;
         }
     }
