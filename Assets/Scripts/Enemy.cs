@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
 
         if (transform.position.z < -10f)
         {
+            GameManager.instance.ScoreUp();
             Destroy(gameObject);
         }
     }

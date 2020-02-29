@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 
     private int _score = 0;
 
+    private bool _gameStarted = false;
+
     public static GameManager instance;
 
     private void Awake()
@@ -28,13 +30,18 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine("SpawnEnemyRoutine");
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.anyKeyDown && !_gameStarted)
+        {
+            _scoreText.gameObject.SetActive(true);
+            StartCoroutine("SpawnEnemyRoutine");
+            _gameStarted = true;
+        }
     }
 
     private void SpawnEnemy()

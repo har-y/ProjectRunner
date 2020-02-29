@@ -725,6 +725,7 @@ MonoBehaviour:
   _enemyObject: {fileID: 6041297390781359744, guid: ddf944167fd04fd46a6fb530e671bb86,
     type: 3}
   _enemyContainer: {fileID: 1608140985}
+  _scoreText: {fileID: 1770941381}
 --- !u!1 &1608140985
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,7 +774,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1770941380
 RectTransform:
   m_ObjectHideFlags: 0
