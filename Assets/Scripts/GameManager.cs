@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _menuPanel;
 
     [SerializeField] private Text _scoreText;
-   
+    [SerializeField] private Text _highScoreText;
+
     private float _xTilt = 1.75f;
 
     private int _score = 0;
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
         if (PlayerPrefs.HasKey("highScore"))
         {
             _highScore = PlayerPrefs.GetInt("highScore");
+            _highScoreText.text = "HIGH SCORE: " + _highScore.ToString();
         }
     }
 
@@ -45,6 +47,7 @@ public class GameManager : MonoBehaviour
         {
             _menuPanel.SetActive(false);
             _scoreText.gameObject.SetActive(true);
+            _highScoreText.gameObject.SetActive(true);
 
             StartCoroutine("SpawnEnemyRoutine");
 
