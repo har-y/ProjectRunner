@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject _enemyObject;
     [SerializeField] private GameObject _enemyContainer;
+
+    [SerializeField] private Text _scoreText;
    
     private float _xTilt = 1.75f;
+
     private int _score = 0;
 
     public static GameManager instance;
@@ -60,5 +64,6 @@ public class GameManager : MonoBehaviour
     public void ScoreUp()
     {
         _score++;
+        _scoreText.text = _score.ToString();
     }
 }
