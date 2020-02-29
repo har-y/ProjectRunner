@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _enemyContainer;
 
     [SerializeField] private Text _scoreText;
+
+    [SerializeField] private GameObject _blinkAnimation;
    
     private float _xTilt = 1.75f;
 
@@ -30,7 +32,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        _blinkAnimation.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -39,6 +41,7 @@ public class GameManager : MonoBehaviour
         if (Input.anyKeyDown && !_gameStarted)
         {
             _scoreText.gameObject.SetActive(true);
+            _blinkAnimation.SetActive(false);
             StartCoroutine("SpawnEnemyRoutine");
             _gameStarted = true;
         }
