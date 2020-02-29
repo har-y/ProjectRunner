@@ -23,11 +23,11 @@ public class Player : MonoBehaviour
         {
             _horizontal = Input.GetAxis("Horizontal");
         }
-#elif UNITY_STANDALONE_WIN
+#elif   UNITY_STANDALONE_WIN
         {
             _horizontal = Input.GetAxis("Horizontal");
         }
-#elif UNITY_ANDROID
+#elif   UNITY_ANDROID
         {
             TouchInput();
         }
