@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     {
         transform.Translate(0f, 0f, Time.deltaTime * -_enemySpeed);
 
-        if (transform.position.z < -10f)
+        if (transform.position.z < -11f)
         {
             GameManager.instance.ScoreUp();
             Destroy(gameObject);
