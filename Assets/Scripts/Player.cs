@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float _playerSpeed = 8f;
 
     private float _xTilt = 2.25f;
+    private float _positionXRange;
+    private float _horizontal;
 
     // Start is called before the first frame update
     void Start()
@@ -17,11 +19,24 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float _horizontal = Input.GetAxis("Horizontal");
+#if     UNITY_EDITOR
+        {
+            _horizontal = Input.GetAxis("Horizontal");
+        }
+#elif UNITY_STANDALONE_WIN
+        {
+            _horizontal = Input.GetAxis("Horizontal");
+        }
+#elif UNITY_ANDROID
+        {
+            TouchInput();
+        }
+#endif
         transform.Translate(_horizontal * Time.deltaTime * _playerSpeed, 0f, 0f);
 
-        float _positionXRange = Mathf.Clamp(transform.position.x, -_xTilt, _xTilt);
+        _positionXRange = Mathf.Clamp(transform.position.x, -_xTilt, _xTilt);
         transform.position = new Vector3(_positionXRange, transform.position.y, transform.position.z);
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,6 +44,24 @@ public class Player : MonoBehaviour
         if (other.tag == "Enemy")
         {
             GameManager.instance.Restart();
+        }
+    }
+
+    private void TouchInput()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            Vector3 touchPosition = Input.mousePosition;
+            float screenMiddle = Screen.width / 2;
+
+            if (touchPosition.x < screenMiddle)
+            {
+                _horizontal = -1;
+            }
+            else if (touchPosition.x > screenMiddle)
+            {
+                _horizontal = 1;
+            }
         }
     }
 }
