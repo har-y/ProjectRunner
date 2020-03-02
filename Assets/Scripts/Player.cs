@@ -29,7 +29,8 @@ public class Player : MonoBehaviour
         }
 #elif   UNITY_ANDROID
         {
-            TouchInput();
+            //TouchInput();
+            _horizontal = Input.acceleration.x;
         }
 #endif
         transform.Translate(_horizontal * Time.deltaTime * _playerSpeed, 0f, 0f);
